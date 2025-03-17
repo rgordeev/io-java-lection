@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <!--
+       status="WARN" означает, что при запуске конфигурации
+       сами события логирования Log4j (например, проблемы с форматом)
+       будут выводиться уровнем WARN. Обычно это не видно при штатном сценарии.
+    -->
+
+    <Appenders>
+        <!-- Определим простой Console Appender, который логирует в System.out -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- PatternLayout задаёт формат каждой строки лога -->
+            <PatternLayout pattern="%d{HH:mm:ss} %-5p [%c{1}] %m%n"/>
+            <!--
+               %d{HH:mm:ss}  - время в формате ЧЧ:ММ:СС
+               %-5p          - уровень логирования (INFO, DEBUG и т.п.)
+                               с шириной 5 символов (выравнивание влево)
+               [%c{1}]       - короткое имя класса (c{1} берёт только последний сегмент пакета)
+               %m            - само сообщение
+               %n            - перенос строки
+            -->
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <!--
+           Root logger задаёт уровень логирования по умолчанию
+           и перенаправляет все логи в Appender "Console".
+         -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
